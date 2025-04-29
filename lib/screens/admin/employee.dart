@@ -229,7 +229,7 @@ class _EmployeeState extends State<Employee> {
             borderSide: BorderSide(color: Colors.grey),
           ),
         ),
-        maxLength: 30,""
+        maxLength: 30,
       ),
     );
   }
