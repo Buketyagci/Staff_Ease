@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "10391525378",
+    "project_id": "staff-ease",
+    "storage_bucket": "staff-ease.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10391525378:android:ab93978b383170685d2f1b",
+        "android_client_info": {
+          "package_name": "com.example.staff_ease"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHDqQqLXg5nYE3kNM5Bn-yyD8rZMWUGms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

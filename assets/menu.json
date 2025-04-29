@@ -1,0 +1,221 @@
+{
+  "gunluk_menu": [
+    {
+      "gun": "Pazartesi",
+      "corba": "Mercimek Çorbası",
+      "ana_yemek": "Tavuk Sote",
+      "karbonhidrat": "Pirinç Pilavı",
+      "yanci": "Mevsim Salatası"
+    },
+    {
+      "gun": "Salı",
+      "corba": "Yoğurt Çorbası",
+      "ana_yemek": "Kuru Fasulye",
+      "karbonhidrat": "Fırın Patates",
+      "yanci": "Yoğurt"
+    },
+    {
+      "gun": "Çarşamba",
+      "corba": "Yayla Çorbası",
+      "ana_yemek": "Kuzu Tandır",
+      "karbonhidrat": "Pilav",
+      "yanci": "Peynirli Börek"
+    },
+    {
+      "gun": "Perşembe",
+      "corba": "Domates Çorbası",
+      "ana_yemek": "Zeytinyağlı Enginar",
+      "karbonhidrat": "Bulgur Pilavı",
+      "yanci": "Havuç Tarator"
+    },
+    {
+      "gun": "Cuma",
+      "corba": "Ezogelin Çorbası",
+      "ana_yemek": "Izgara Köfte",
+      "karbonhidrat": "Patates Püresi",
+      "yanci": "Çoban Salata"
+    },
+    {
+      "gun": "Cumartesi",
+      "corba": "Sebze Çorbası",
+      "ana_yemek": "Tavuk Şiş",
+      "karbonhidrat": "Makarna",
+      "yanci": "Kısır"
+    },
+    {
+      "gun": "Pazar",
+      "corba": "Yoğurt Çorbası",
+      "ana_yemek": "Fırın Tavuk",
+      "karbonhidrat": "Pirinç Pilavı",
+      "yanci": "Domates Salatası"
+    },
+    {
+      "gun": "Pazartesi",
+      "corba": "Tarhana Çorbası",
+      "ana_yemek": "Izgara Tavuk",
+      "karbonhidrat": "Makarna",
+      "yanci": "Çoban Salata"
+    },
+    {
+      "gun": "Salı",
+      "corba": "Mercimek Çorbası",
+      "ana_yemek": "Etli Bezelye",
+      "karbonhidrat": "Bulgur Pilavı",
+      "yanci": "Patatesli Börek"
+    },
+    {
+      "gun": "Çarşamba",
+      "corba": "Yayla Çorbası",
+      "ana_yemek": "Izgara Köfte",
+      "karbonhidrat": "Makarna",
+      "yanci": "Çoban Salata"
+    },
+    {
+      "gun": "Perşembe",
+      "corba": "Domates Çorbası",
+      "ana_yemek": "Kuzu İskender",
+      "karbonhidrat": "Patates Kızartması",
+      "yanci": "Cacık"
+    },
+    {
+      "gun": "Cuma",
+      "corba": "Ezogelin Çorbası",
+      "ana_yemek": "Barbunya",
+      "karbonhidrat": "Fırın Patates",
+      "yanci": "Mevsim Salatası"
+    },
+    {
+      "gun": "Cumartesi",
+      "corba": "Sebze Çorbası",
+      "ana_yemek": "Fırında Tavuk Kanat",
+      "karbonhidrat": "Pilav",
+      "yanci": "Zeytinyağlı Fasulye"
+    },
+    {
+      "gun": "Pazar",
+      "corba": "Yoğurt Çorbası",
+      "ana_yemek": "Fırın Tavuk",
+      "karbonhidrat": "Pirinç Pilavı",
+      "yanci": "Domates Salatası"
+    },
+    {
+      "gun": "Pazartesi",
+      "corba": "Kremalı Mantar Çorbası",
+      "ana_yemek": "Tavuk Sote",
+      "karbonhidrat": "Fırın Patates",
+      "yanci": "Mevsim Salatası"
+    },
+    {
+      "gun": "Salı",
+      "corba": "Yoğurt Çorbası",
+      "ana_yemek": "Kuru Fasulye",
+      "karbonhidrat": "Pirinç Pilavı",
+      "yanci": "Ayran"
+    },
+    {
+      "gun": "Çarşamba",
+      "corba": "Tel Şehriye Çorbası",
+      "ana_yemek": "Kuzu Tandır",
+      "karbonhidrat": "Pilav",
+      "yanci": "Domates Salatası"
+    },
+    {
+      "gun": "Perşembe",
+      "corba": "Domates Çorbası",
+      "ana_yemek": "Zeytinyağlı Kereviz",
+      "karbonhidrat": "Bulgur Pilavı",
+      "yanci": "Havuç Tarator"
+    },
+    {
+      "gun": "Cuma",
+      "corba": "Ezogelin Çorbası",
+      "ana_yemek": "Izgara Köfte",
+      "karbonhidrat": "Patates Püresi",
+      "yanci": "Çoban Salata"
+    },
+    {
+      "gun": "Cumartesi",
+      "corba": "Sebze Çorbası",
+      "ana_yemek": "Tavuk Şiş",
+      "karbonhidrat": "Makarna",
+      "yanci": "Kısır"
+    },
+    {
+      "gun": "Pazar",
+      "corba": "Tarhana Çorbası",
+      "ana_yemek": "Fırın sebze",
+      "karbonhidrat": "Soslu Makarna",
+      "yanci": "Ayran"
+    },
+    {
+      "gun": "Pazartesi",
+      "corba": "Yoğurt Çorbası",
+      "ana_yemek": "Fırın Tavuk",
+      "karbonhidrat": "Pirinç Pilavı",
+      "yanci": "Domates Salatası"
+    },
+    {
+      "gun": "Salı",
+      "corba": "Mercimek Çorbası",
+      "ana_yemek": "Etli Bezelye",
+      "karbonhidrat": "Fırın Makarna",
+      "yanci": "Yoğurt"
+    },
+    {
+      "gun": "Çarşamba",
+      "corba": "Yayla Çorbası",
+      "ana_yemek": "Izgara Köfte",
+      "karbonhidrat": "Bulgur Pilavı",
+      "yanci": "Çoban Salata"
+    },
+    {
+      "gun": "Perşembe",
+      "corba": "Domates Çorbası",
+      "ana_yemek": "Kuzu İskender",
+      "karbonhidrat": "Patates Kızartması",
+      "yanci": "Cacık"
+    },
+    {
+      "gun": "Cuma",
+      "corba": "Ezogelin Çorbası",
+      "ana_yemek": "Barbunya",
+      "karbonhidrat": "Fırın Patates",
+      "yanci": "Mevsim Salatası"
+    },
+    {
+      "gun": "Cumartesi",
+      "corba": "Sebze Çorbası",
+      "ana_yemek": "Fırında Tavuk Kanat",
+      "karbonhidrat": "Pilav",
+      "yanci": "Ayran"
+    },
+    {
+      "gun": "Pazar",
+      "corba": "Yoğurt Çorbası",
+      "ana_yemek": "Fırın Tavuk",
+      "karbonhidrat": "Pirinç Pilavı",
+      "yanci": "Domates Salatası"
+    },
+    {
+      "gun": "Pazartesi",
+      "corba": "Yoğurt Çorbası",
+      "ana_yemek": "Fırın Tavuk",
+      "karbonhidrat": "Pirinç Pilavı",
+      "yanci": "Domates Salatası"
+    },
+    {
+      "gun": "Salı",
+      "corba": "Mercimek Çorbası",
+      "ana_yemek": "Etli Bezelye",
+      "karbonhidrat": "Fırın Makarna",
+      "yanci": "Yoğurt"
+    },
+    {
+      "gun": "Çarşamba",
+      "corba": "Yayla Çorbası",
+      "ana_yemek": "Izgara Köfte",
+      "karbonhidrat": "Bulgur Pilavı",
+      "yanci": "Çoban Salata"
+    }
+  ]
+}
