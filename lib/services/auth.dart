@@ -4,6 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:staff_ease/model/employee_model.dart';
 import 'package:staff_ease/utils/data_migration.dart';
 
 class Auth {
@@ -1212,15 +1213,16 @@ class Auth {
     return difference >= 180;
   }
 
-  List<Map<dynamic, dynamic>> filterUsersByQuery(
-    List<Map<dynamic, dynamic>> allUsers,
+  List<EmployeeModel> filterUsersByQuery(
+    List<EmployeeModel> users,
     String query,
   ) {
-    final sanitizedQuery = query.toLowerCase();
-    return allUsers.where((user) {
-      final name = (user['name'] ?? '').toLowerCase();
-      final surname = (user['surname'] ?? '').toLowerCase();
-      return name.contains(sanitizedQuery) || surname.contains(sanitizedQuery);
+    final lowerQuery = query.toLowerCase();
+    print("lowerqury: $lowerQuery");
+
+    return users.where((user) {
+      return user.name.toLowerCase().startsWith(lowerQuery) ||
+          user.surname.toLowerCase().startsWith(lowerQuery);
     }).toList();
   }
 

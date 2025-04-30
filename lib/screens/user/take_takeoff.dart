@@ -24,8 +24,6 @@ class _TakeTakeoffScreenState extends State<TakeTakeoffScreen> {
   final Auth _dayOffRequests = Auth();
   final Auth _oldDayOffRequests = Auth();
   final Auth _currentDayOffUser = Auth();
-  //List<Map<dynamic, dynamic>> _requests = [];
-  //List<Map<dynamic, dynamic>> _oldRequests = [];
 
   TextEditingController dayOffStartController = TextEditingController();
   TextEditingController dayOffEndController = TextEditingController();

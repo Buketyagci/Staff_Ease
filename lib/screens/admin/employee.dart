@@ -19,8 +19,8 @@ class _EmployeeState extends State<Employee> {
 
   TextEditingController searchTextCont = TextEditingController();
   TextEditingController departmentController = TextEditingController();
-  List<Map<dynamic, dynamic>> allUsers = [];
-  List<Map<dynamic, dynamic>> filteredUsers = [];
+  List<EmployeeModel> allUsers = [];
+  List<EmployeeModel> filteredUsers = [];
   Auth auth = Auth();
   String? _selectedDepartment;
   final List<String> departments = [
@@ -116,14 +116,19 @@ class _EmployeeState extends State<Employee> {
                   }
 
                   final employees = snapshot.data!;
+                  if (allUsers.isEmpty) {
+                    allUsers =
+                        employees.map((e) => EmployeeModel.fromMap(e)).toList();
+                    filteredUsers = List.from(allUsers);
+                  }
                   return SizedBox(
                     height: 550,
                     child: ListView.builder(
                       shrinkWrap: true,
                       physics: AlwaysScrollableScrollPhysics(),
-                      itemCount: employees.length,
+                      itemCount: filteredUsers.length,
                       itemBuilder: (context, index) {
-                        final item = EmployeeModel.fromMap(employees[index]);
+                        final item = filteredUsers[index];
                         return Padding(
                           padding: const EdgeInsets.symmetric(
                             vertical: 10,
@@ -215,19 +220,26 @@ class _EmployeeState extends State<Employee> {
       width: 180,
       child: TextField(
         onChanged: (value) {
-          final results = auth.filterUsersByQuery(allUsers, value);
-          print("result: $results");
-          setState(() {
-            filteredUsers = results;
-          });
+          if (value.isNotEmpty) {
+            final results = auth.filterUsersByQuery(allUsers, value);
+            print("allusers: $allUsers");
+            print("filteredresult: $results");
+            setState(() {
+              filteredUsers = results;
+            });
+          } else {
+            setState(() {
+              filteredUsers = allUsers;
+            });
+          }
         },
         cursorWidth: 3,
         controller: searchTextCont,
         obscureText: false,
         decoration: InputDecoration(
           border: OutlineInputBorder(),
-          labelText: "Aranacak kelime",
-          hintText: "Aranacak kelime",
+          labelText: "Anahtar kelime",
+          hintText: "Anahtar kelime",
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(5)),
             borderSide: BorderSide(color: Colors.grey),

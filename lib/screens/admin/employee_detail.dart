@@ -19,6 +19,7 @@ class _EmployeeDetailState extends State<EmployeeDetail> {
   late TextEditingController statusController = TextEditingController();
   late TextEditingController departmentController = TextEditingController();
   late TextEditingController birthdayController = TextEditingController();
+  late TextEditingController startDateController = TextEditingController();
   String name = "";
 
   @override
@@ -32,6 +33,17 @@ class _EmployeeDetailState extends State<EmployeeDetail> {
       text: widget.employee.department,
     );
     birthdayController = TextEditingController(text: widget.employee.birthday);
+    startDateController = TextEditingController(
+      text: widget.employee.startDate,
+    );
+  }
+
+  String formatDepartmentName(String department) {
+    return department
+        .replaceAll("_", " ")
+        .split(" ")
+        .map((word) => word[0].toUpperCase() + word.substring(1).toLowerCase())
+        .join(" ");
   }
 
   @override
@@ -62,9 +74,13 @@ class _EmployeeDetailState extends State<EmployeeDetail> {
               title("Email"),
               employeeDetail(emailController),
               title("Departman"),
-              employeeDetail(departmentController),
+              employeeDepartment(
+                formatDepartmentName(departmentController.text),
+              ),
               title("Statü"),
               employeeDetail(statusController),
+              title("İşe Başlama Tarihi"),
+              employeeDetail(startDateController),
               title("Doğum Tarihi"),
               employeeDetail(birthdayController),
             ],
@@ -99,4 +115,19 @@ class _EmployeeDetailState extends State<EmployeeDetail> {
       ),
     );
   }
+
+  Widget employeeDepartment(String value) => Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(15)),
+      color: Colors.white,
+      border: Border.all(color: Colors.grey.shade300, width: 1.5),
+    ),
+    margin: EdgeInsets.all(12),
+    height: 50,
+    width: 250,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [Text(value, style: GoogleFonts.josefinSans(fontSize: 24))],
+    ),
+  );
 }
