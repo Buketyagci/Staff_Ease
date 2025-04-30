@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:staff_ease/screens/admin/refresh_employee.dart';
+import 'package:staff_ease/model/employee_model.dart';
+import 'package:staff_ease/screens/admin/employee_detail.dart';
 import 'package:staff_ease/services/auth.dart';
 import 'package:staff_ease/utils/data_migration.dart';
 import 'package:staff_ease/widgets/admin_widgets/appbar_admin.dart';
@@ -14,14 +15,15 @@ class Employee extends StatefulWidget {
 }
 
 class _EmployeeState extends State<Employee> {
+  String name = "";
+
   TextEditingController searchTextCont = TextEditingController();
   TextEditingController departmentController = TextEditingController();
   List<Map<dynamic, dynamic>> allUsers = [];
   List<Map<dynamic, dynamic>> filteredUsers = [];
   Auth auth = Auth();
-  String name = "";
   String? _selectedDepartment;
-  final List<String> department = [
+  final List<String> departments = [
     'Seçilmedi',
     'Bilgi İşlem',
     'İnsan Kaynakları',
@@ -121,7 +123,7 @@ class _EmployeeState extends State<Employee> {
                       physics: AlwaysScrollableScrollPhysics(),
                       itemCount: employees.length,
                       itemBuilder: (context, index) {
-                        final item = employees[index];
+                        final item = EmployeeModel.fromMap(employees[index]);
                         return Padding(
                           padding: const EdgeInsets.symmetric(
                             vertical: 10,
@@ -132,7 +134,9 @@ class _EmployeeState extends State<Employee> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => RefreshEmployee(),
+                                  builder:
+                                      (context) =>
+                                          EmployeeDetail(employee: item),
                                 ),
                               );
                             },
@@ -159,7 +163,7 @@ class _EmployeeState extends State<Employee> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        '${item['name']} ${item['surname']}',
+                                        '${item.name} ${item.surname}',
                                         style: GoogleFonts.josefinSans(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -172,7 +176,7 @@ class _EmployeeState extends State<Employee> {
                                         ),
                                       ),
                                       Text(
-                                        '${item['status']}',
+                                        '${item.status}',
                                         style: GoogleFonts.josefinSans(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -249,7 +253,7 @@ class _EmployeeState extends State<Employee> {
           isExpanded: true,
           value: _selectedDepartment ?? 'Seçilmedi',
           items:
-              department.map((String value) {
+              departments.map((String value) {
                 return DropdownMenuItem<String>(
                   child: Text(value),
                   value: value,
