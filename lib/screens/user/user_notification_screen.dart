@@ -76,9 +76,11 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                 return;
               }
 
-              Future<bool> success = NotificateManager()
+              bool success = await NotificateManager()
                   .sendNotificationToManager(title: title, message: message);
-              if (await success) {
+              if (success) {
+                _title = null;
+                _message = null;
                 msg.showMessage("İleti başarıyla gönderildi");
               } else {
                 msg.showMessage("İleti gönderilirken hata oluştu");

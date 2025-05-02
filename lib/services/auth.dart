@@ -961,9 +961,9 @@ class Auth {
                       endDate.month,
                       endDate.day,
                     );
-                    print(start);
-                    print(end);
-                    print(today);
+                    // print(start);
+                    // print(end);
+                    // print(today);
                     if ((start.isBefore(today) ||
                             start.isAtSameMomentAs(today)) &&
                         (end.isAfter(today) || end.isAtSameMomentAs(today))) {

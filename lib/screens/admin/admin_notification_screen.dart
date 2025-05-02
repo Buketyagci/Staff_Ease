@@ -51,7 +51,7 @@ class _AdminNotificationScreenState extends State<AdminNotificationScreen> {
                     style: GoogleFonts.josefinSans(fontSize: 24),
                   ),
                   SizedBox(height: 10),
-                  FutureBuilder(
+                  FutureBuilder<List<Map<dynamic, dynamic>>>(
                     future: _messages.fetchMessages(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -59,17 +59,18 @@ class _AdminNotificationScreenState extends State<AdminNotificationScreen> {
                       } else if (snapshot.hasError) {
                         return Center(child: Text("Hata: ${snapshot.error}"));
                       } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                        return Center(child: Text("Onay bekleyen talep yok"));
+                        return Center(child: Text("Çalışan iletisi yok"));
                       }
 
                       final messages = snapshot.data!;
+                      print("messages: $messages");
                       return SizedBox(
                         height: 340,
                         child: ListView.builder(
                           shrinkWrap: true,
                           physics: AlwaysScrollableScrollPhysics(),
                           itemCount: messages.length,
-                          itemBuilder: (BuildContext context, int index) {
+                          itemBuilder: (context, index) {
                             final item = messages[index];
                             return Padding(
                               padding: const EdgeInsets.symmetric(
@@ -102,7 +103,7 @@ class _AdminNotificationScreenState extends State<AdminNotificationScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      if (isExpanded) ...[
+                                      if (isExpanded == false) ...[
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -116,7 +117,36 @@ class _AdminNotificationScreenState extends State<AdminNotificationScreen> {
                                               ),
                                             ),
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () async {
+                                                try {
+                                                  print(
+                                                    "Department: ${item['department']}",
+                                                  );
+                                                  print(
+                                                    "UserID: ${item['userId']}",
+                                                  );
+                                                  print(
+                                                    "MessageID: ${item['key']}",
+                                                  );
+                                                  await _messages.deleteMessage(
+                                                    department:
+                                                        item['department'],
+                                                    uid: item['userId'],
+                                                    messageId: item['key'],
+                                                  );
+                                                  ScaffoldMessenger.of(
+                                                    context,
+                                                  ).showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        "Mesaj silindi",
+                                                      ),
+                                                    ),
+                                                  );
+                                                } catch (e) {
+                                                  print("Onaylama hatası: $e");
+                                                }
+                                              },
                                               icon: Icon(
                                                 Icons.delete,
                                                 color: Colors.red,
@@ -133,7 +163,7 @@ class _AdminNotificationScreenState extends State<AdminNotificationScreen> {
                                           ),
                                         ),
                                       ],
-                                      if (isExpanded == false) ...[
+                                      if (isExpanded) ...[
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -147,7 +177,27 @@ class _AdminNotificationScreenState extends State<AdminNotificationScreen> {
                                               ),
                                             ),
                                             IconButton(
-                                              onPressed: () {},
+                                              onPressed: () async {
+                                                try {
+                                                  await _messages.deleteMessage(
+                                                    department:
+                                                        item['department'],
+                                                    uid: item['userId'],
+                                                    messageId: item['key'],
+                                                  );
+                                                  ScaffoldMessenger.of(
+                                                    context,
+                                                  ).showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        "Mesaj silindi",
+                                                      ),
+                                                    ),
+                                                  );
+                                                } catch (e) {
+                                                  print("Onaylama hatası");
+                                                }
+                                              },
                                               icon: Icon(
                                                 Icons.delete,
                                                 color: Colors.red,

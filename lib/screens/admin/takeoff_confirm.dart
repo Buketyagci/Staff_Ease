@@ -133,6 +133,15 @@ class _TakeOffConfirmScreenState extends State<TakeOffConfirmScreen> {
                                         IconButton(
                                           onPressed: () async {
                                             try {
+                                              print(
+                                                "Department: ${item['department']}",
+                                              );
+                                              print(
+                                                "UserID: ${item['userId']}",
+                                              );
+                                              print(
+                                                "MessageID: ${item['key']}",
+                                              );
                                               await confirm
                                                   .approveDayOffRequest(
                                                     department:

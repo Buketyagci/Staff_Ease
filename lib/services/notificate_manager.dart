@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:staff_ease/utils/data_migration.dart';
+import 'package:staff_ease/widgets/message.dart';
 
 class NotificateManager {
+  Message msg = Message();
   Future<bool> sendNotificationToManager({
     required String title,
     required String message,
@@ -117,11 +120,12 @@ class NotificateManager {
         final ref = dbRef.child('users').child(department).child('Calisan');
 
         final employeeSnapshot = await ref.get();
-
+        print("veri çekildi mi: ${employeeSnapshot.exists}");
+        print("calisan verisi: ${employeeSnapshot.value}");
         if (employeeSnapshot.exists) {
           final employeeUsers = employeeSnapshot.value as Map<dynamic, dynamic>;
           for (final userEntry in employeeUsers.entries) {
-            //final userId = userEntry.key;
+            final userId = userEntry.key;
             final userData = userEntry.value as Map<dynamic, dynamic>;
 
             if (userData.containsKey('messages') &&
@@ -130,8 +134,10 @@ class NotificateManager {
               messagesMap.forEach((messageId, value) {
                 messages.add({
                   'key': messageId,
+                  'userId': userId,
                   'name': userData['name'],
                   'surname': userData['surname'],
+                  'department': userData['department'],
                   'title': value['title'],
                   'message': value['message'],
                 });
@@ -144,5 +150,39 @@ class NotificateManager {
       }
     }
     return messages;
+  }
+
+  Future<void> deleteMessage({
+    required String department,
+    required String uid,
+    required String messageId,
+  }) async {
+    try {
+      department = sanitizeDepartment(department);
+      print("delete fonksiyonu çalıştı");
+      print("department auth: $department");
+      print("uid auth: $uid");
+      print("messageid auth: $messageId");
+      final messageRef = FirebaseDatabase.instance
+          .ref()
+          .child('users')
+          .child(department)
+          .child('Calisan')
+          .child(uid)
+          .child('messages')
+          .child(messageId);
+
+      final messageSnapshot = await messageRef.get();
+      if (messageSnapshot.exists) {
+        await messageRef.remove();
+        msg.showMessage("İleti başarıyla silindi");
+      } else {
+        print("veri yok: ${messageSnapshot.value}");
+        throw Exception("mesaj verisi bulunamadı");
+      }
+    } catch (e) {
+      print("deletemsg hatası: $e");
+      rethrow;
+    }
   }
 }
