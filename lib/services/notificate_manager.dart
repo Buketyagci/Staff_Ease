@@ -121,7 +121,7 @@ class NotificateManager {
         if (employeeSnapshot.exists) {
           final employeeUsers = employeeSnapshot.value as Map<dynamic, dynamic>;
           for (final userEntry in employeeUsers.entries) {
-            final userId = userEntry.key;
+            //final userId = userEntry.key;
             final userData = userEntry.value as Map<dynamic, dynamic>;
 
             if (userData.containsKey('messages') &&
