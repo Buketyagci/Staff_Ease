@@ -149,6 +149,7 @@ class _TakeOffConfirmScreenState extends State<TakeOffConfirmScreen> {
                                                     uid: item['userId'],
                                                     requestId: item['key'],
                                                   );
+                                              setState(() {});
                                               ScaffoldMessenger.of(
                                                 context,
                                               ).showSnackBar(

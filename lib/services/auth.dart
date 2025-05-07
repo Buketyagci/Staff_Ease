@@ -95,14 +95,18 @@ class Auth {
               'createdAt': ServerValue.timestamp,
               'department': department,
             });
+        print(
+          "Kayıt yolu: users/$sanitizedDepartment/$sanitizedStatus/${user.uid}",
+        );
+
         print("Kullanıcı başarıyla kaydedildi.");
 
         DataSnapshot userSnapshot =
             (await FirebaseDatabase.instance
                     .ref()
                     .child('users')
-                    .child(department)
-                    .child(status)
+                    .child(sanitizedDepartment)
+                    .child(sanitizedStatus)
                     .child(user.uid)
                     .once())
                 as DataSnapshot;
@@ -351,8 +355,105 @@ class Auth {
     }
   }
 
+  Future<int> getSickListCount() async {
+    if (currentUser == null) {
+      print("Kullanıcı giriş yapmamış");
+      return 0;
+    }
+    try {
+      final uid = currentUser!.uid;
+      final DatabaseReference usersRef = FirebaseDatabase.instance.ref().child(
+        'users',
+      );
+
+      DataSnapshot snapshot = await usersRef.get();
+
+      if (snapshot.exists) {
+        Map<dynamic, dynamic> departments = snapshot.value as Map;
+
+        for (var departmentEntry in departments.entries) {
+          Map<dynamic, dynamic> userTypes = departmentEntry.value;
+
+          for (var userTypeEntry in userTypes.entries) {
+            Map<dynamic, dynamic> users = userTypeEntry.value;
+
+            if (users.containsKey(uid)) {
+              Map<dynamic, dynamic> userData = users[uid];
+              print("Kullanıcı bulundu: $userData");
+
+              if (userData.containsKey('sickList')) {
+                print("raporlu izin günü : ${userData['sickList']}");
+                return userData['sickList'];
+              } else {
+                print("sickList alanı bulunamadı.");
+                return 0;
+              }
+            }
+          }
+        }
+
+        print("Kullanıcı hiçbir departmanda bulunamadı.");
+        return 0;
+      } else {
+        print("Kullanıcı verisi bulunamadı.");
+        return 0;
+      }
+    } catch (e) {
+      print("Hata oluştu: $e");
+      return 0;
+    }
+  }
+
   Future<void> signOut() async {
-    await _firebaseAuth.signOut();
+    String? status;
+    String? department;
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      final uid = user.uid;
+      final dbRef = FirebaseDatabase.instance.ref();
+
+      final userSnapshot = await dbRef.child('users').get();
+
+      if (userSnapshot.exists) {
+        final snapshot = userSnapshot.value as Map<dynamic, dynamic>;
+        for (var departmentEntry in snapshot.entries) {
+          final departmentName = departmentEntry.key;
+          final statuses = departmentEntry.value as Map;
+
+          for (var statusEntry in statuses.entries) {
+            final statusName = statusEntry.key;
+            status = statusName;
+            department = departmentName;
+            final usersMap = statusEntry.value as Map;
+            if (usersMap.containsKey(uid)) {
+              if (usersMap.containsKey('lastLogout')) {
+                await dbRef
+                    .child('users')
+                    .child(department!)
+                    .child(status!)
+                    .child(uid)
+                    .update({
+                      'lastLogout': DateTime.now().millisecondsSinceEpoch,
+                    });
+                break;
+              } else {
+                await dbRef
+                    .child('users')
+                    .child(department!)
+                    .child(status!)
+                    .child(uid)
+                    .update({
+                      'lastLogout': DateTime.now().millisecondsSinceEpoch,
+                    });
+              }
+            }
+          }
+        }
+      }
+
+      await _firebaseAuth.signOut();
+    }
   }
 
   Future<bool> createDayOffRequest({

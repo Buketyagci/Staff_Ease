@@ -33,12 +33,21 @@ class _TakeTakeoffScreenState extends State<TakeTakeoffScreen> {
   void initState() {
     super.initState();
     _loadDayOffCount();
+    _loadSickListCount();
   }
 
   Future<void> _loadDayOffCount() async {
     int count = await Auth().getDayOffCount();
     setState(() {
       dayOff = count;
+    });
+  }
+
+  Future<void> _loadSickListCount() async {
+    int count = await Auth().getSickListCount();
+    setState(() {
+      sickList = count;
+      print("sicklist bulundu: $sickList");
     });
   }
 
@@ -339,6 +348,7 @@ class _TakeTakeoffScreenState extends State<TakeTakeoffScreen> {
             dayOffEnd: dayOffEnd,
             type: type,
           );
+          setState(() {});
           if (success) {
             _selectedStartDay = null;
             _selectedFinishDay = null;

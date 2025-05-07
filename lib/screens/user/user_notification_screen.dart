@@ -88,9 +88,13 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
 
               bool success = await NotificateManager()
                   .sendNotificationToManager(title: title, message: message);
+              setState(() {});
+
               if (success) {
-                _title = null;
-                _message = null;
+                // _title = null;
+                // _message = null;
+                titleController.clear();
+                messageController.clear();
                 msg.showMessage("İleti başarıyla gönderildi");
               } else {
                 msg.showMessage("İleti gönderilirken hata oluştu");
@@ -225,6 +229,8 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                                                         uid: uid,
                                                         messageId: item['key'],
                                                       );
+                                                  setState(() {});
+
                                                   ScaffoldMessenger.of(
                                                     context,
                                                   ).showSnackBar(
@@ -284,6 +290,8 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                                                         uid: uid,
                                                         messageId: item['key'],
                                                       );
+                                                  setState(() {});
+
                                                   ScaffoldMessenger.of(
                                                     context,
                                                   ).showSnackBar(
@@ -496,6 +504,7 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                                                         department: department!,
                                                         uid: uid,
                                                       );
+                                                  setState(() {});
                                                   ScaffoldMessenger.of(
                                                     context,
                                                   ).showSnackBar(
@@ -579,6 +588,8 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                                                         department: department!,
                                                         uid: uid,
                                                       );
+                                                  setState(() {});
+
                                                   ScaffoldMessenger.of(
                                                     context,
                                                   ).showSnackBar(

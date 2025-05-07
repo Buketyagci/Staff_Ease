@@ -8,6 +8,7 @@ import 'package:staff_ease/model/weather_model.dart';
 import 'package:staff_ease/screens/user/food_list_screen.dart';
 import 'package:staff_ease/screens/user/user_notification_screen.dart';
 import 'package:staff_ease/services/auth.dart';
+import 'package:staff_ease/widgets/notification.dart';
 import 'package:staff_ease/widgets/reminder.dart';
 import 'package:staff_ease/widgets/user_widgets/menubar_user.dart';
 
@@ -110,7 +111,7 @@ class _UserHomeState extends State<UserHome> {
     ];
     return days[now.weekday - 1];
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,6 +127,10 @@ class _UserHomeState extends State<UserHome> {
               dailyFoodMenuContainer(),
               permissionContainer(),
               Reminder.Reminder(),
+              NotificationWidget(
+                status: 'Calisan',
+                path: 'messagesFromManager',
+              ),
             ],
           ),
         ),

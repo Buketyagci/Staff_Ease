@@ -38,7 +38,6 @@ class NotificateManager {
             if (usersMap.containsKey(uid)) {
               department = departmentName;
               print("Kullanıcı departmanı bulundu: $department");
-
               break;
             }
           }
@@ -379,10 +378,16 @@ class NotificateManager {
             final oldMessages = userData['messages'] as Map<dynamic, dynamic>;
             oldMessages.forEach((messageId, value) {
               oldMessagesEmp.add({
+                "createdAt": value['createdAt'],
                 "key": messageId,
                 "title": value['title'],
                 "message": value['message'],
               });
+            });
+            oldMessagesEmp.sort((a, b) {
+              final aTime = a['createdAt'] ?? 0;
+              final bTime = b['createdAt'] ?? 0;
+              return (bTime as int).compareTo(aTime as int);
             });
           }
         }
