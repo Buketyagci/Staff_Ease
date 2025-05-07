@@ -126,8 +126,6 @@ class _AddNewUserScreen extends State<AddNewUserScreen> {
                   //   child: Container(
                   //     height: 60,
                   //     width: 180,
-                  //     child: textFields(
-                  //       "Yaş",
                   SizedBox(width: 14),
                   dropDownGenderContainer(),
                 ],
