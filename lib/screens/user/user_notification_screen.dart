@@ -44,8 +44,6 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
   }
 
   Widget createMessage() {
-    // _title = titleController.text;
-    // _message = messageController.text;
     return Container(
       width: 400,
       height: 520,
