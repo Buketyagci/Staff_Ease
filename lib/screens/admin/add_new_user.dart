@@ -120,6 +120,7 @@ class _AddNewUserScreen extends State<AddNewUserScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   dropDownStatus(),
+
                   // Padding(
                   //   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   //   child: Container(
@@ -127,13 +128,6 @@ class _AddNewUserScreen extends State<AddNewUserScreen> {
                   //     width: 180,
                   //     child: textFields(
                   //       "Yaş",
-                  //       "Yaş giriniz",
-                  //       false,
-                  //       100,
-                  //       ageController,
-                  //     ),
-                  //   ),
-                  // ),
                   SizedBox(width: 14),
                   dropDownGenderContainer(),
                 ],
