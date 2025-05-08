@@ -26,8 +26,10 @@ class _UserSettingScreenState extends State<UserSettingScreen> {
       appBar: AppBar(title: myAppBarUser(context, "Ayarlar")),
       drawer: menuBarUser(context),
       body: Center(
-        child: Column(
-          children: [changePasswordContainer(), changeEmailContainer()],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [changePasswordContainer(), changeEmailContainer()],
+          ),
         ),
       ),
     );

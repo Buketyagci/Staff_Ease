@@ -55,7 +55,7 @@ class Refresh {
       try {
         await user.verifyBeforeUpdateEmail(newEmail);
 
-        print(
+        _showMessage.showMessage(
           "E-posta adresini güncellemek için doğrulama e-postası gönderildi.",
         );
       } on FirebaseAuthException catch (e) {

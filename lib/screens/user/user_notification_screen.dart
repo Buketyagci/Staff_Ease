@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:staff_ease/services/notificate_manager.dart';
 import 'package:staff_ease/widgets/message.dart';
 import 'package:staff_ease/widgets/reminder.dart';
@@ -144,6 +145,7 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                       }
 
                       final messages = snapshot.data!;
+
                       print("messages: $messages");
                       return SizedBox(
                         height: 340,
@@ -154,7 +156,12 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                           itemBuilder: (context, index) {
                             final item = messages[index];
                             final isExpanded = expandedIndexes.contains(index);
-
+                            int createdAt = item['createdAt'];
+                            DateTime datetime =
+                                DateTime.fromMillisecondsSinceEpoch(createdAt);
+                            String formattedDate = DateFormat(
+                              'dd.MM.yyyy HH:mm',
+                            ).format(datetime);
                             return Padding(
                               padding: const EdgeInsets.symmetric(
                                 vertical: 10,
@@ -190,7 +197,8 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      if (isExpanded) ...[
+                                      if (!isExpanded) ...[
+                                        Text("$formattedDate"),
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -251,7 +259,9 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                                           ],
                                         ),
                                       ],
-                                      if (!isExpanded) ...[
+                                      if (isExpanded) ...[
+                                        Text("$formattedDate"),
+
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -406,6 +416,12 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                           itemBuilder: (context, index) {
                             final item = messages[index];
                             final isExpanded = expandedIndexes.contains(index);
+                            int createdAt = item['createdAt'];
+                            DateTime datetime =
+                                DateTime.fromMillisecondsSinceEpoch(createdAt);
+                            String formattedDate = DateFormat(
+                              'dd.MM.yyyy HH:mm',
+                            ).format(datetime);
                             return Padding(
                               padding: const EdgeInsets.symmetric(
                                 vertical: 10,
@@ -442,6 +458,7 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       if (!isExpanded) ...[
+                                        Text("$formattedDate"),
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -526,6 +543,8 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                                         ),
                                       ],
                                       if (isExpanded) ...[
+                                        Text("$formattedDate"),
+
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
