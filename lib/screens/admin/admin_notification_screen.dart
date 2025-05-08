@@ -21,8 +21,8 @@ class _AdminNotificationScreenState extends State<AdminNotificationScreen> {
   TextEditingController titleController = TextEditingController();
   TextEditingController messageController = TextEditingController();
 
-  String? _title;
-  String? _message;
+  //String? _title;
+  //String? _message;
   Message msg = Message();
 
   NotificateManager notification = NotificateManager();
@@ -75,7 +75,7 @@ class _AdminNotificationScreenState extends State<AdminNotificationScreen> {
             onPressed: () async {
               String title = titleController.text.trim();
               String message = messageController.text.trim();
-              print(_title);
+              //print(_title);
               print("title: $title");
               print("message: $message");
 
@@ -94,10 +94,7 @@ class _AdminNotificationScreenState extends State<AdminNotificationScreen> {
                 msg.showMessage("İleti gönderilirken hata oluştu");
               }
             },
-            child: Text(
-              "Gönder",
-              style: GoogleFonts.josefinSans(fontSize: 20),
-            ),
+            child: Text("Gönder", style: GoogleFonts.josefinSans(fontSize: 20)),
           ),
         ],
       ),
